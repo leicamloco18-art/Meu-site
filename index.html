@@ -93,22 +93,14 @@ h1 span { color: var(--gold); }
 }
 @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
 
-/* NOVOS SELOS DE PAGAMENTO */
-.payment-trust-badges {
-    margin-top: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+.payment-methods {
+    margin-top: 20px; display: flex; justify-content: center; gap: 15px; font-size: 1.8rem;
 }
-.badge-item {
-    height: 20px;
-    filter: brightness(0.9) contrast(1.1);
-    transition: 0.3s;
-}
-.badge-item:hover { filter: brightness(1.1); }
+.fa-cc-visa { color: #1a1f71; }
+.fa-cc-mastercard { color: #eb001b; }
+.fa-pix { color: #32bcad; }
+.fa-bitcoin { color: #f7931a; }
+.fa-dollar-sign { color: #26a17b; }
 
 .logos-section { padding: 60px 20px; text-align: center; }
 .logos-grid {
@@ -148,28 +140,309 @@ ul li i { color: var(--gold); }
 .results-scroll img { height: 250px; border-radius: 15px; border: 1px solid #333; }
 
 /* ─── FORMULÁRIO ─── */
-.form-section { padding: 100px 20px; position: relative; overflow: hidden; }
-.form-section::before {
-    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%); pointer-events: none;
+.form-section {
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
 }
-.form-wrapper { max-width: 680px; margin: 0 auto; position: relative; }
-.form-card { background: #0a0a0a; border: 1px solid rgba(212,175,55,0.25); border-radius: 30px; padding: 60px 50px; position: relative; overflow: hidden; }
-.form-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold-gradient); }
-.form-header { text-align: center; margin-bottom: 45px; }
-.form-header h2 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 12px; }
-.form-header h2 span { color: var(--gold); }
-.form-group { margin-bottom: 22px; position: relative; }
-.form-group label { display: block; font-size: 0.78rem; font-weight: 700; color: #777; text-transform: uppercase; margin-bottom: 10px; }
-.form-group input { width: 100%; padding: 16px 20px 16px 48px; background: #111; border: 1px solid #222; border-radius: 14px; color: #fff; font-family: inherit; }
-.form-group .input-icon { position: absolute; left: 18px; top: 42px; color: #444; }
-.form-btn { width: 100%; padding: 20px; background: var(--gold-gradient); color: #000; border: none; border-radius: 50px; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.4s; }
 
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.form-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.form-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 30px;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold-gradient);
+}
+
+.form-card::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.form-header .form-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.3);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.form-header h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.form-header h2 span { color: var(--gold); }
+
+.form-header p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 22px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.form-group .input-wrapper {
+    position: relative;
+}
+
+.form-group .input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #444;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 16px 20px 16px 48px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 14px;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: 0.3s;
+    -webkit-appearance: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus {
+    border-color: rgba(212,175,55,0.5);
+    background: #141414;
+    box-shadow: 0 0 0 4px rgba(212,175,55,0.06);
+}
+
+.form-group input:focus + .input-icon,
+.form-group .input-wrapper:focus-within .input-icon {
+    color: var(--gold);
+}
+
+.form-group input::placeholder { color: #444; }
+
+.checkbox-group {
+    margin: 28px 0;
+    padding: 20px 22px;
+    background: rgba(212,175,55,0.04);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.checkbox-group:hover {
+    background: rgba(212,175,55,0.08);
+    border-color: rgba(212,175,55,0.3);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.custom-checkbox i {
+    font-size: 0.75rem;
+    color: #000;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .custom-checkbox,
+.checkbox-label.checked .custom-checkbox {
+    background: var(--gold-gradient);
+    border-color: var(--gold);
+}
+
+.checkbox-label input[type="checkbox"]:checked ~ .custom-checkbox i,
+.checkbox-label.checked .custom-checkbox i {
+    opacity: 1;
+}
+
+.checkbox-text {
+    font-size: 0.92rem;
+    color: #bbb;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+.checkbox-text strong {
+    color: #fff;
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.form-btn {
+    width: 100%;
+    padding: 20px;
+    background: var(--gold-gradient);
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(212,175,55,0.25);
+}
+
+.form-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 45px rgba(212,175,55,0.4);
+}
+
+.form-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+.form-footer-note {
+    text-align: center;
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #555;
+    font-size: 0.78rem;
+}
+
+.form-footer-note i { color: var(--gold); }
+
+.form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.success-icon {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,255,136,0.05));
+    border: 2px solid rgba(0,255,136,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+    color: var(--green);
+}
+
+.form-section .section-label {
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 992px) { .logos-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 768px) {
     h1 { font-size: 2.5rem; }
     .mentoria-grid { grid-template-columns: 1fr; }
     .logos-grid { grid-template-columns: repeat(2, 1fr); }
     .m-card.featured { transform: scale(1); }
+    .form-card { padding: 40px 25px; }
+    .form-header h2 { font-size: 1.8rem; }
 }
 </style>
 </head>
@@ -216,7 +489,11 @@ ul li i { color: var(--gold); }
             <i class="fas fa-star"></i>
             <span>Trustpilot</span>
             <div class="stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
             </div>
             <span>5.0</span>
         </a>
@@ -255,12 +532,8 @@ ul li i { color: var(--gold); }
                 <li><i class="fas fa-check-circle"></i> Suporte Permanente da Comunidade</li>
             </ul>
             <a href="https://checkout.infinitepay.io/aultimachave/7PT87GF1F" class="btn" style="background: #222; color: #fff; box-shadow: none;">Garantir Vaga no Grupo</a>
-            <div class="payment-trust-badges">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="badge-item" alt="Visa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="badge-item" alt="Mastercard">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Pix.png" class="badge-item" alt="Pix">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" class="badge-item" alt="Bitcoin">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Tether_Logo.svg" class="badge-item" alt="USDT">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> <i class="fa-brands fa-pix"></i> <i class="fab fa-bitcoin"></i> <i class="fas fa-dollar-sign"></i>
             </div>
         </div>
 
@@ -282,50 +555,118 @@ ul li i { color: var(--gold); }
                 </li>
             </ul>
             <a href="https://checkout.infinitepay.io/aultimachave/7AeKMSfKMT" class="btn">Viver do Trade AGORA</a>
-            <div class="payment-trust-badges">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="badge-item" alt="Visa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="badge-item" alt="Mastercard">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Pix.png" class="badge-item" alt="Pix">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" class="badge-item" alt="Bitcoin">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Tether_Logo.svg" class="badge-item" alt="USDT">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> <i class="fa-brands fa-pix"></i> <i class="fab fa-bitcoin"></i> <i class="fas fa-dollar-sign"></i>
             </div>
         </div>
     </div>
 </section>
-
 <section class="container">
     <h2 style="text-align: center; margin-bottom: 40px;">Resultados de Alunos</h2>
     <div class="results-scroll">
-        <img src="imagens/ednelson.jpg"><img src="imagens/joseroberto.png"><img src="imagens/mezenga.jpg">
-        <img src="imagens/renata.jpg"><img src="imagens/rodrigo.jpg"><img src="imagens/exp1.jpg">
+        <img src="imagens/ednelson.jpg">
+        <img src="imagens/joseroberto.png">
+        <img src="imagens/mezenga.jpg">
+        <img src="imagens/renata.jpg">
+        <img src="imagens/rodrigo.jpg">
+        <img src="imagens/exp1.jpg"><img src="imagens/exp2.jpg"><img src="imagens/exp3.jpg">
+        <img src="imagens/exp4.jpg"><img src="imagens/exp5.jpg"><img src="imagens/exp6.jpg">
+        <img src="imagens/exp7.jpg"><img src="imagens/exp8.jpg"><img src="imagens/exp9.jpg"><img src="imagens/exp10.jpg">
     </div>
 </section>
 
+<!-- ─── SEÇÃO DO FORMULÁRIO ─── -->
 <section class="form-section" id="notificacoes">
+    <p class="section-label">Fique por dentro</p>
     <div class="form-wrapper">
         <div class="form-card">
-            <div class="form-header">
-                <h2>Receba <span>Promoções</span></h2>
-                <p>Cadastre-se para vagas abertas e descontos exclusivos.</p>
+
+            <div id="form-content">
+                <div class="form-header">
+                    <div class="form-badge">
+                        <i class="fas fa-bell"></i>
+                        Acesso Antecipado
+                    </div>
+                    <h2>Receba <span>Promoções</span><br>em Primeira Mão</h2>
+                    <p>Cadastre-se e seja o primeiro a saber sobre vagas abertas, descontos exclusivos e novidades da mentoria.</p>
+                </div>
+
+                <form id="contact-form" action="https://formspree.io/f/xvzdkwjq" method="POST">
+
+                    <div class="form-group">
+                        <label>Nome completo</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="nome" placeholder="Seu nome completo" required autocomplete="off">
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <div class="input-wrapper">
+                            <input type="email" name="email" placeholder="seu@email.com" required autocomplete="off">
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>WhatsApp / Telefone</label>
+                        <div class="input-wrapper">
+                            <input type="tel" name="telefone" placeholder="+55 (00) 00000-0000" required autocomplete="off">
+                            <i class="fab fa-whatsapp input-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group" onclick="toggleCheck(this)">
+                        <label class="checkbox-label" id="check-label">
+                            <input type="checkbox" name="notificacoes" value="Sim" id="notif-check">
+                            <div class="custom-checkbox"><i class="fas fa-check"></i></div>
+                            <div class="checkbox-text">
+                                <strong>Quero receber notificações e promoções</strong>
+                                Aceito ser contactado sobre novas turmas, descontos e conteúdos exclusivos da Mentoria A Última Chave.
+                            </div>
+                        </label>
+                    </div>
+
+                    <input type="hidden" name="_subject" value="Novo cadastro – Notificações/Promoções A Última Chave">
+                    <input type="hidden" name="_next" value="">
+
+                    <button type="submit" class="form-btn">
+                        <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Quero Receber as Promoções
+                    </button>
+                </form>
+
+                <div class="form-footer-note">
+                    <i class="fas fa-lock"></i>
+                    Seus dados estão seguros. Sem spam, apenas conteúdo de valor.
+                </div>
             </div>
-            <form action="https://formspree.io/f/xvzdkwjq" method="POST">
-                <div class="form-group">
-                    <label>Nome</label>
-                    <input type="text" name="nome" placeholder="Seu nome" required>
-                    <i class="fas fa-user input-icon"></i>
+
+            <div class="form-success" id="form-success">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
                 </div>
-                <div class="form-group">
-                    <label>E-mail</label>
-                    <input type="email" name="email" placeholder="seu@email.com" required>
-                    <i class="fas fa-envelope input-icon"></i>
+                <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 12px;">Cadastro Realizado! 🎉</h3>
+                <p style="color: var(--muted); font-size: 0.95rem; max-width: 360px; margin: 0 auto;">
+                    Você está na lista VIP. Em breve entraremos em contato com novidades e ofertas exclusivas da mentoria.
+                </p>
+                <div style="margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="https://t.me/aultimachaveoficial" target="_blank" class="btn" style="padding: 14px 28px; font-size: 0.85rem;">
+                        <i class="fab fa-telegram" style="margin-right: 8px;"></i> Entrar no Telegram
+                    </a>
                 </div>
-                <button type="submit" class="form-btn">Cadastrar</button>
-            </form>
+            </div>
+
         </div>
     </div>
 </section>
 
 <footer style="padding: 60px 20px; text-align: center; color: #444; border-top: 1px solid #111;">
+    <div class="footer-socials" style="margin-bottom: 20px; display: flex; justify-content: center; gap: 20px;">
+        <a href="https://t.me/aultimachaveoficial" target="_blank"><i class="fab fa-telegram" style="font-size: 1.5rem;"></i></a>
+        <a href="https://www.instagram.com/aultimachaveoficial/" target="_blank"><i class="fab fa-instagram" style="font-size: 1.5rem;"></i></a>
+        <a href="https://www.youtube.com/@aultimachaveoficial" target="_blank"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>
+    </div>
     <p>&copy; 2024 Braga Trader. A Última Chave.</p>
 </footer>
 
@@ -360,6 +701,43 @@ function updateProfit() {
     if(currentProfit < 2450) setTimeout(updateProfit, Math.random() * 1800);
 }
 updateProfit();
+
+function toggleCheck(wrapper) {
+    const cb = wrapper.querySelector('input[type="checkbox"]');
+    const label = wrapper.querySelector('.checkbox-label');
+    cb.checked = !cb.checked;
+    label.classList.toggle('checked', cb.checked);
+}
+
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin" style="margin-right:10px;"></i> Enviando...';
+
+    try {
+        const formData = new FormData(this);
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            document.getElementById('form-content').style.display = 'none';
+            const success = document.getElementById('form-success');
+            success.style.display = 'block';
+        } else {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i> Quero Receber as Promoções';
+            alert('Erro ao enviar. Tente novamente.');
+        }
+    } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i> Quero Receber as Promoções';
+        alert('Erro de conexão. Tente novamente.');
+    }
+});
 </script>
 
 </body>
